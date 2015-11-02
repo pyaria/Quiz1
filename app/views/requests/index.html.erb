@@ -1,5 +1,6 @@
 <h1>Welcome</h1>
-<table>
+
+<table class="table table-striped">
   <tr>
     <th>Name</th>
     <th>Email</th>
@@ -15,7 +16,7 @@
         <td><%= request.message.truncate(20) %></td>
         <td><%= link_to "Edit", edit_request_path(request) %>
             <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%>
-            <%= link_to "Not Done", request_nd_path(request), {method: :post} %></td>
+            <%= link_to "Not Done", request_nd_path(request), {method: :post, class: "btn btn-danger"} %></td>
       </tr>
     <% end %>
     <% @notdone.each do |request| %>
@@ -26,7 +27,7 @@
         <td><%= request.message.truncate(20) %></td>
         <td><%= link_to "Edit", edit_request_path(request) %>
             <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%>
-            <%= link_to "Done", request_d_path(request), {method: :post} %></td>
+            <%= link_to "Done", request_d_path(request), {method: :post, class: "btn btn-success"} %></td>
       </tr>
     <% end %>
 </table>
