@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'requests#index'
   get '/requests/new' => 'requests#new', as: :new_request
   get '/requests' => 'requests#index'
-  post '/requests' => 'requestes#create'
+  post '/requests' => 'requests#create'
   get 'requests/:id/edit' => 'requests#edit', as: :edit_request
   get '/requests/:id' => 'requests#show', as: :request
   patch '/requests/:id' => 'requests#update'

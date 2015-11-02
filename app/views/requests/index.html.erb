@@ -12,7 +12,7 @@
         <td><%= request.name %></td>
         <td><%= request.email %></td>
         <td><%= request.department %></td>
-        <td><%= request.message %></td>
+        <td><%= request.message.truncate(20) %></td>
         <td><%= link_to "Edit", edit_request_path(request) %>
         <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%></td>
 
