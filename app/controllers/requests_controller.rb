@@ -3,11 +3,15 @@ class RequestsController < ApplicationController
     requests = Request.all
     @done = []
     @notdone = []
-    requests.each do |request|
-      if request.done
-        @done.push(request)
-      else
-        @notdone.push(request)
+    if params[:search]
+      @rsearch = Request.search(params[:search])
+    else
+      requests.each do |request|
+        if request.done
+          @done.push(request)
+        else
+          @notdone.push(request)
+        end
       end
     end
   end

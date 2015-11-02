@@ -1,14 +1,19 @@
 <h1>Welcome</h1>
+<%= form_tag(requests_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Requests" %>
+  <%= submit_tag "Search" %>
+<% end %>
 
-<table class="table table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Department</th>
-    <th>Message</th>
-    <th>Actions</th>
-  </tr>
-    <% @done.each do |request| %>
+<% if @rsearch %>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Message</th>
+      <th>Actions</th>
+    </tr>
+    <% @rsearch.each do |request| %>
       <tr>
         <td><%= request.name %></td>
         <td><%= request.email %></td>
@@ -19,15 +24,37 @@
             <%= link_to "Not Done", request_nd_path(request), {method: :post, class: "btn btn-danger"} %></td>
       </tr>
     <% end %>
-    <% @notdone.each do |request| %>
-      <tr>
-        <td><%= request.name %></td>
-        <td><%= request.email %></td>
-        <td><%= request.department %></td>
-        <td><%= request.message.truncate(20) %></td>
-        <td><%= link_to "Edit", edit_request_path(request) %>
-            <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%>
-            <%= link_to "Done", request_d_path(request), {method: :post, class: "btn btn-success"} %></td>
-      </tr>
-    <% end %>
-</table>
+
+<% else %>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Message</th>
+      <th>Actions</th>
+    </tr>
+      <% @done.each do |request| %>
+        <tr>
+          <td><%= request.name %></td>
+          <td><%= request.email %></td>
+          <td><%= request.department %></td>
+          <td><%= request.message.truncate(20) %></td>
+          <td><%= link_to "Edit", edit_request_path(request) %>
+              <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%>
+              <%= link_to "Not Done", request_nd_path(request), {method: :post, class: "btn btn-danger"} %></td>
+        </tr>
+      <% end %>
+      <% @notdone.each do |request| %>
+        <tr>
+          <td><%= request.name %></td>
+          <td><%= request.email %></td>
+          <td><%= request.department %></td>
+          <td><%= request.message.truncate(20) %></td>
+          <td><%= link_to "Edit", edit_request_path(request) %>
+              <%= link_to "Delete", request_path(request.id), {method: :delete, data: {confirm: "Are you sure?"}}%>
+              <%= link_to "Done", request_d_path(request), {method: :post, class: "btn btn-success"} %></td>
+        </tr>
+      <% end %>
+  </table>
+<% end %>
