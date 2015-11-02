@@ -1,0 +1,25 @@
+<h1>Edit Request %></h1>
+<%= form_for @r do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_area :email %>
+  </div>
+  <div class="form-group">
+    <%= f.label :department %>
+    <%= f.radio_button(:department, "Sales") %>
+    <%= f.label :Sales %>
+    <%= f.radio_button(:department, "Marketing") %>
+    <%= f.label :Marketing %>
+    <%= f.radio_button(:department, "Technical") %>
+    <%= f.label :Technical %>
+  </div>
+  <div class="form-group">
+    <%= f.label :message %>
+    <%= f.text_area :message %>
+  </div>
+    <%= f.submit({class: "btn btn-primary"})%>
+<% end %>
