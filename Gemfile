@@ -39,6 +39,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'interactive_editor'
   gem 'faker'
+  gem 'kaminari'
 end
 
 group :development do
