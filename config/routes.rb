@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/requests/:id' => 'requests#show', as: :request
   patch '/requests/:id' => 'requests#update'
   delete '/requests/:id' => 'requests#destroy'
+  post '/requests/:id/nd' => 'requests#donetond', as: :request_nd
+  post '/requests/:id/d' => 'requests#ndtodone', as: :request_d
   # get '/' => 'requests#index', as: :root
   # get '/requests/new' => 'requests#new', as: :new_request
   # get '/requests/:id/edit' => 'requests#edit', as: :edit_request

@@ -1,6 +1,15 @@
 class RequestsController < ApplicationController
   def index
-    @requests = Request.all
+    requests = Request.all
+    @done = []
+    @notdone = []
+    requests.each do |request|
+      if request.done
+        @done.push(request)
+      else
+        @notdone.push(request)
+      end
+    end
   end
 
   def new
@@ -38,5 +47,16 @@ class RequestsController < ApplicationController
     request = Request.find(params[:id])
     request.destroy
     redirect_to root_path, notice: "Request deleted successfully"
+  end
+
+  def donetond
+    request = Request.find(params[:id])
+    request.update_attribute(:done, false)
+    redirect_to root_path, notice: "Request marked as not done"
+  end
+  def ndtodone
+    request = Request.find(params[:id])
+    request.update_attribute(:done, true)
+    redirect_to root_path, notice: "Request marked as done"
   end
 end
